@@ -142,7 +142,7 @@ const deleteJoke = () => {
                     <button 
                         class="btn"
                         :class="[isUpdate ? 'btn-success' : 'btn-primary']"
-                        :disabled="newLine1.length < 5 && newLine2 < 5"
+                        :disabled="newLine1.length < 5 && newLine2.length < 5"
                     >
                         {{ isUpdate? 'Update' : 'Save' }}
                     </button>   
