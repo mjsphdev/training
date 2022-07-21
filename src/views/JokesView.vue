@@ -71,8 +71,12 @@ const updateJoke = (i, l1, l2) => {
     jokeId.value = i
     newLine1.value = l1
     newLine2.value = l2
-    isUpdate.value = true
-    isDelete.value = true
+    isUpdate.value = !isUpdate.value
+    isDelete.value = !isUpdate.value
+    if(isUpdate.value == false){
+        newLine1.value = ""
+        newLine2.value = ""
+    }
 }
 
 // DELETE
@@ -109,7 +113,7 @@ const deleteJoke = () => {
                     type="button" 
                     data-bs-toggle="collapse" 
                     :data-bs-target="`#flush-collapse-${jokes.id}`" 
-                    aria-expanded="false" 
+                    :aria-expanded="isUpdate" 
                     :aria-controls="`flush-${jokes.id}`"
                     @click="updateJoke(jokes.id, jokes.line1, jokes.line2)"
                 >
@@ -144,7 +148,7 @@ const deleteJoke = () => {
                         :class="[isUpdate ? 'btn-success' : 'btn-primary']"
                         :disabled="newLine1.length < 5 || newLine2.length < 5"
                     >
-                        {{ isUpdate? 'Update' : 'Save' }}
+                        {{ isUpdate ? 'Update' : 'Save' }}
                     </button>   
                 </div>
                 <div class="col">
